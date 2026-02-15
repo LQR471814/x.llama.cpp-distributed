@@ -3,7 +3,8 @@ llama.cpp:
 
 .bin: llama.cpp
 	cd llama.cpp && \
-		mkdir build && \
+		mkdir -p build && \
+		cd build && \
 		cmake .. -DGGML_CUDA=ON -DGGML_RPC=ON && \
 		cmake --build . --config Release
 	touch .bin
