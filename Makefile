@@ -1,4 +1,5 @@
 BIN_DIR := "./llama.cpp/build/bin"
+BUILD_PARALLEL := 12
 
 llama.cpp:
 	git clone "https://github.com/ggml-org/llama.cpp.git" --depth 1
@@ -7,8 +8,8 @@ llama.cpp:
 	cd llama.cpp && \
 		mkdir -p build && \
 		cd build && \
-		cmake .. -DGGML_CUDA=ON -DGGML_RPC=ON && \
-		cmake --build . --config Release
+		cmake .. $(EXTRA_CMAKE_FLAGS) -DGGML_RPC=ON && \
+		cmake --build . --config Release -j $(BUILD_PARALLEL)
 	touch .bin
 
 remote: .bin
@@ -31,3 +32,4 @@ main-server: .bin Qwen3-14B-Q6_K.gguf
 			--host 0.0.0.0 \
 			--model Qwen3-14B-Q6_K.gguf \
 			--rpc 192.168.20.2:50052
+
