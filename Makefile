@@ -20,6 +20,6 @@ Qwen3-Coder-30B-A3B-Instruct-UD-Q8_K_XL.gguf:
 main: .bin Qwen3-Coder-30B-A3B-Instruct-UD-Q8_K_XL.gguf
 	$(BIN_DIR)/llama-cli \
 			--model Qwen3-Coder-30B-A3B-Instruct-UD-Q8_K_XL.gguf \
-			-ngl 99 \ # amount of layers to offload to GPU
+			-ngl 99 \
 			--rpc 192.168.20.2:50052
 
