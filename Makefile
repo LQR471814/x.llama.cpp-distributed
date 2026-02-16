@@ -12,13 +12,16 @@ llama.cpp:
 	touch .bin
 
 remote: .bin
-	$(BIN_DIR)/rpc-server -p 50052
+	$(BIN_DIR)/rpc-server -p 50052 -H 0.0.0.0
 
 Qwen3-Coder-30B-A3B-Instruct-UD-Q8_K_XL.gguf:
 	curl -O -L https://huggingface.co/unsloth/Qwen3-Coder-30B-A3B-Instruct-GGUF/resolve/main/Qwen3-Coder-30B-A3B-Instruct-UD-Q8_K_XL.gguf?download=true
 
-main: .bin Qwen3-Coder-30B-A3B-Instruct-UD-Q8_K_XL.gguf
+Qwen3-14B-Q6_K.gguf:
+	curl -O -L https://huggingface.co/Qwen/Qwen3-14B-GGUF/resolve/main/Qwen3-14B-Q6_K.gguf?download=true
+
+main: .bin Qwen3-14B-Q6_K.gguf
 	$(BIN_DIR)/llama-cli \
-			--model Qwen3-Coder-30B-A3B-Instruct-UD-Q8_K_XL.gguf \
+			--model Qwen3-14B-Q6_K.gguf \
 			--rpc 192.168.20.2:50052
 
