@@ -12,13 +12,6 @@
     in
     {
       devShells.${system}.default =
-        let
-          libs = with pkgs; [
-            cudaPackages.cudatoolkit
-            cudaPackages.cudnn
-            linuxKernel.packages.linux_6_18.nvidia_x11
-          ];
-        in
         pkgs.mkShell {
           name = "cuda-python-env";
           packages =
@@ -28,13 +21,11 @@
               jq
               gnumake
               gcc
-            ])
-            ++ libs;
+            ]);
           # Nixpkgs now automates much of the LD_LIBRARY_PATH via 'autoAddDriverRunpath'
           # but a shellHook is often still needed for user-installed pip packages.
           shellHook = ''
-            export CUDA_PATH=${pkgs.cudaPackages.cudatoolkit}
-            export LD_LIBRARY_PATH="${pkgs.lib.makeLibraryPath libs}:$LD_LIBRARY_PATH"
+            export LD_LIBRARY_PATH="/run/opengl-driver/lib:$LD_LIBRARY_PATH"
             echo "Devshell activated."
           '';
         };
