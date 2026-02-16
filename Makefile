@@ -21,6 +21,9 @@ Qwen3-Coder-30B-A3B-Instruct-UD-Q8_K_XL.gguf:
 Qwen3-14B-Q6_K.gguf:
 	curl -O -L https://huggingface.co/Qwen/Qwen3-14B-GGUF/resolve/main/Qwen3-14B-Q6_K.gguf?download=true
 
+Qwen3-0.6B-Q6_K.gguf:
+	curl -O -L https://huggingface.co/unsloth/Qwen3-0.6B-GGUF/resolve/main/Qwen3-0.6B-Q6_K.gguf?download=true
+
 main: .bin Qwen3-14B-Q6_K.gguf
 	$(BIN_DIR)/llama-cli \
 			--model Qwen3-14B-Q6_K.gguf \
@@ -32,4 +35,16 @@ main-server: .bin Qwen3-14B-Q6_K.gguf
 			--host 0.0.0.0 \
 			--model Qwen3-14B-Q6_K.gguf \
 			--rpc 192.168.20.2:50052
+
+local: .bin Qwen3-0.6B-Q6_K.gguf
+	# perf tuning:
+	# -fa = flash attention (usually faster)
+	# -t = # of CPU threads (should be <= physical cores, not hyper-thread because that causes memory-thrashing)
+	# -ub should be < -b
+	# -ctk = quantize context (q6 quantization of the model doesn't extend to the context, we can quantize context for negligible perf loss and save memory)
+	$(BIN_DIR)/llama-cli --model Qwen3-0.6B-Q6_K.gguf \
+		-fa on -t 9 \
+		-b 4096 \
+		-ub 512 \
+		-ctk q8_0 -ctv q8_0 \
 
