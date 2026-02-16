@@ -25,3 +25,9 @@ main: .bin Qwen3-14B-Q6_K.gguf
 			--model Qwen3-14B-Q6_K.gguf \
 			--rpc 192.168.20.2:50052
 
+main-server: .bin Qwen3-14B-Q6_K.gguf
+	$(BIN_DIR)/llama-server \
+			--port 8080 \
+			--host 0.0.0.0 \
+			--model Qwen3-14B-Q6_K.gguf \
+			--rpc 192.168.20.2:50052
