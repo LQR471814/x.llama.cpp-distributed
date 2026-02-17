@@ -42,7 +42,7 @@ local: .bin Qwen3-0.6B-Q6_K.gguf
 	# -t = # of CPU threads (should be <= physical cores, not hyper-thread because that causes memory-thrashing)
 	# -ub should be < -b
 	# -ctk = quantize context (q6 quantization of the model doesn't extend to the context, we can quantize context for negligible perf loss and save memory)
-	$(BIN_DIR)/llama-cli --model Qwen3-0.6B-Q6_K.gguf \
+	$(BIN_DIR)/llama-server --port 8080 --model Qwen3-0.6B-Q6_K.gguf \
 		-fa on -t 9 \
 		-b 4096 \
 		-ub 512 \
