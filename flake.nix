@@ -25,7 +25,7 @@
     {
       devShells.${system} =
         let
-          libs = defaultLibs;
+          libs = with pkgs; [ cudaPackages.cudatoolkit ] ++ defaultLibs;
         in
         {
           cuda = pkgs.mkShell {
