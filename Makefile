@@ -24,16 +24,19 @@ Qwen3-14B-Q6_K.gguf:
 Qwen3-0.6B-Q6_K.gguf:
 	curl -O -L https://huggingface.co/unsloth/Qwen3-0.6B-GGUF/resolve/main/Qwen3-0.6B-Q6_K.gguf?download=true
 
-main: .bin Qwen3-14B-Q6_K.gguf
+Qwen3-4B-Q6_K.gguf:
+	curl -O -L https://huggingface.co/unsloth/Qwen3-4B-Thinking-2507-GGUF/resolve/main/Qwen3-4B-Thinking-2507-Q6_K.gguf?download=true
+
+main: .bin Qwen3-4B-Q6_K.gguf
 	$(BIN_DIR)/llama-cli \
-			--model Qwen3-14B-Q6_K.gguf \
+			--model Qwen3-4B-Q6_K.gguf \
 			--rpc 192.168.20.2:50052
 
-main-server: .bin Qwen3-14B-Q6_K.gguf
+main-server: .bin Qwen3-4B-Q6_K.gguf
 	$(BIN_DIR)/llama-server \
 			--port 8080 \
 			--host 0.0.0.0 \
-			--model Qwen3-14B-Q6_K.gguf \
+			--model Qwen3-4B-Q6_K.gguf \
 			--rpc 192.168.20.2:50052
 
 local: .bin Qwen3-0.6B-Q6_K.gguf
