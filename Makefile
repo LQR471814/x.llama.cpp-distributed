@@ -31,7 +31,7 @@ models/Qwen3-4B-Thinking-2507-Q6_K.gguf: models
 	curl -o models/Qwen3-4B-Thinking-2507-Q6_K.gguf -L https://huggingface.co/unsloth/Qwen3-4B-Thinking-2507-GGUF/resolve/main/Qwen3-4B-Thinking-2507-Q6_K.gguf?download=true
 
 models/Qwen3-Embedding-0.6B-Q8_0.gguf: models
-	curl -o models/Qwen3-Embedding-0.6B-Q8_0.gguf -L https://huggingface.co/Qwen/Qwen3-Embedding-0.6B-GGUF/blob/main/Qwen3-Embedding-0.6B-Q8_0.gguf
+	curl -o models/Qwen3-Embedding-0.6B-Q8_0.gguf -L https://huggingface.co/Qwen/Qwen3-Embedding-0.6B-GGUF/resolve/main/Qwen3-Embedding-0.6B-Q8_0.gguf?download=true
 
 main: .bin models
 	$(BIN_DIR)/llama-cli \
