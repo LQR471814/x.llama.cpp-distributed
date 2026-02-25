@@ -33,6 +33,9 @@ models/Qwen3-4B-Thinking-2507-Q6_K.gguf: models
 models/Qwen3-Embedding-0.6B-Q8_0.gguf: models
 	curl -o models/Qwen3-Embedding-0.6B-Q8_0.gguf -L https://huggingface.co/Qwen/Qwen3-Embedding-0.6B-GGUF/resolve/main/Qwen3-Embedding-0.6B-Q8_0.gguf?download=true
 
+models/bge-reranker-v2-m3-Q8_0.gguf: models
+	curl -o models/bge-reranker-v2-m3-Q8_0.gguf -L https://huggingface.co/gpustack/bge-reranker-v2-m3-GGUF/resolve/main/bge-reranker-v2-m3-Q8_0.gguf?download=true
+
 main: .bin models
 	$(BIN_DIR)/llama-cli \
 			--models-dir models \
