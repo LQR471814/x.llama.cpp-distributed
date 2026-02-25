@@ -19,16 +19,19 @@ models:
 	mkdir models
 
 models/Qwen3-Coder-30B-A3B-Instruct-UD-Q8_K_XL.gguf: models
-	curl -O -L https://huggingface.co/unsloth/Qwen3-Coder-30B-A3B-Instruct-GGUF/resolve/main/Qwen3-Coder-30B-A3B-Instruct-UD-Q8_K_XL.gguf?download=true
+	curl -o models/Qwen3-Coder-30B-A3B-Instruct-UD-Q8_K_XL.gguf -L https://huggingface.co/unsloth/Qwen3-Coder-30B-A3B-Instruct-GGUF/resolve/main/Qwen3-Coder-30B-A3B-Instruct-UD-Q8_K_XL.gguf?download=true
 
 models/Qwen3-14B-Q6_K.gguf: models
-	curl -O -L https://huggingface.co/Qwen/Qwen3-14B-GGUF/resolve/main/Qwen3-14B-Q6_K.gguf?download=true
+	curl -o models/Qwen3-14B-Q6_K.gguf -L https://huggingface.co/Qwen/Qwen3-14B-GGUF/resolve/main/Qwen3-14B-Q6_K.gguf?download=true
 
 models/Qwen3-0.6B-Q6_K.gguf: models
-	curl -O -L https://huggingface.co/unsloth/Qwen3-0.6B-GGUF/resolve/main/Qwen3-0.6B-Q6_K.gguf?download=true
+	curl -o models/Qwen3-0.6B-Q6_K.gguf -L https://huggingface.co/unsloth/Qwen3-0.6B-GGUF/resolve/main/Qwen3-0.6B-Q6_K.gguf?download=true
 
 models/Qwen3-4B-Thinking-2507-Q6_K.gguf: models
-	curl -O -L https://huggingface.co/unsloth/Qwen3-4B-Thinking-2507-GGUF/resolve/main/Qwen3-4B-Thinking-2507-Q6_K.gguf?download=true
+	curl -o models/Qwen3-4B-Thinking-2507-Q6_K.gguf -L https://huggingface.co/unsloth/Qwen3-4B-Thinking-2507-GGUF/resolve/main/Qwen3-4B-Thinking-2507-Q6_K.gguf?download=true
+
+models/Qwen3-Embedding-0.6B-Q8_0.gguf: models
+	curl -o models/Qwen3-Embedding-0.6B-Q8_0.gguf -L https://huggingface.co/Qwen/Qwen3-Embedding-0.6B-GGUF/blob/main/Qwen3-Embedding-0.6B-Q8_0.gguf
 
 main: .bin models
 	$(BIN_DIR)/llama-cli \
