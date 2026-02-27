@@ -41,11 +41,11 @@ main: .bin models
 			--models-dir models \
 			--rpc 192.168.20.2:50052
 
-main-server: .bin models
+main-server: .bin models/Qwen3-4B-Thinking-2507-Q6_K.gguf
 	$(BIN_DIR)/llama-server \
 			--port 8080 \
 			--host 0.0.0.0 \
-			--models-dir models \
+			--model models/Qwen3-4B-Thinking-2507-Q6_K.gguf \
 			--rpc 192.168.20.2:50052
 
 local: .bin models models/Qwen3-0.6B-Q6_K.gguf
@@ -58,5 +58,20 @@ local: .bin models models/Qwen3-0.6B-Q6_K.gguf
 		-fa on -t 9 \
 		-b 4096 \
 		-ub 512 \
-		-ctk q8_0 -ctv q8_0 \
+		-ctk q8_0 -ctv q8_0
 
+local-embeddings: .bin models/Qwen3-Embedding-0.6B-Q8_0.gguf
+	$(BIN_DIR)/llama-server --host 0.0.0.0 --port 7700 --model models/Qwen3-Embedding-0.6B-Q8_0.gguf --embeddings \
+		-fa on \
+		-t 9 \
+		-b 4096 \
+		-ub 512 \
+		-ctk q8_0 -ctv q8_0
+
+local-rerank: .bin models/bge-reranker-v2-m3-Q8_0.gguf
+	$(BIN_DIR)/llama-server --host 0.0.0.0 --port 7701 --model models/bge-reranker-v2-m3-Q8_0.gguf --reranking \
+		-fa on \
+		-t 9 \
+		-b 4096 \
+		-ub 512 \
+		-ctk q8_0 -ctv q8_0
