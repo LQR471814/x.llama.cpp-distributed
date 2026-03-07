@@ -39,16 +39,19 @@ models/bge-reranker-v2-m3-Q8_0.gguf: models
 models/gemma-3-4b-it-Q6_K.gguf: models
 	curl -o models/gemma-3-4b-it-Q6_K.gguf -L https://huggingface.co/unsloth/gemma-3-4b-it-GGUF/resolve/main/gemma-3-4b-it-Q6_K.gguf?download=true
 
+models/Qwen3.5-4B-Q6_K.gguf: models
+	curl -o models/Qwen3.5-4B-Q6_K.gguf -L https://huggingface.co/unsloth/Qwen3.5-4B-GGUF/resolve/main/Qwen3.5-4B-Q6_K.gguf?download=true
+
 main: .bin models
 	$(BIN_DIR)/llama-cli \
 			--models-dir models \
 			--rpc 192.168.20.2:50052
 
-main-server: .bin models/gemma-3-4b-it-Q6_K.gguf
+main-server: .bin models/Qwen3.5-4B-Q6_K.gguf
 	$(BIN_DIR)/llama-server \
 			--port 8080 \
 			--host 0.0.0.0 \
-			--model models/gemma-3-4b-it-Q6_K.gguf \
+			--model models/Qwen3.5-4B-Q6_K.gguf \
 			--rpc 192.168.20.2:50052
 
 local: .bin models models/Qwen3-0.6B-Q6_K.gguf
