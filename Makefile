@@ -50,11 +50,11 @@ main: .bin models
 			--models-dir models \
 			--rpc 192.168.20.2:50052
 
-main-server: .bin models/Qwen3.5-9B-Q6_K.gguf
+main-server: .bin models/Qwen3.5-4B-Q6_K.gguf
 	$(BIN_DIR)/llama-server \
 			--port 8080 \
 			--host 0.0.0.0 \
-			--model models/Qwen3.5-9B-Q6_K.gguf \
+			--model models/Qwen3.5-4B-Q6_K.gguf \
 			--rpc 192.168.20.2:50052
 
 local: .bin models models/Qwen3-0.6B-Q6_K.gguf
